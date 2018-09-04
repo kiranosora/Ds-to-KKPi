@@ -51,7 +51,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
         TH1F *hGen=new TH1F("hGen","hGen",100, mBeg, mEnd);
         //TFile *f =new TFile("../alg_revised/ChooseBestSigTagPair/root/0001_abs.root");
         TFile *fM =new TFile(fPhsp);
-        TFile *tem=new TFile("result/tmp.root","recreate"); 
+        TFile *tem=new TFile("../sample_matrix_result/tmp.root","recreate"); 
         cout<<" "<<__FILE__<<" "<<__LINE__<<endl;
         TTree* t0=(TTree*) fM->Get("DsDecay");
         cout<<" "<<__FILE__<<" "<<__LINE__<<endl;
@@ -80,7 +80,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
             if(m12 < mBeg || m12 > mEnd) continue;
             if(costheta_truth < cosBeg || costheta_truth > cosEnd) continue;
             if(m12_truth < mBeg || m12_truth > mEnd) continue;
-            if(it%1000==0) cout<<" "<<it<<" events processed"<<endl;
+            //if(it%1000==0) cout<<" "<<it<<" events processed"<<endl;
             m13Idx =( costheta - cosBeg)/binCos;
             m13IdxTruth = ( costheta_truth - cosBeg)/binCos;
             m12Idx =( m12 - mBeg)/binWidth;
@@ -90,10 +90,10 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
                 continue;
             }
             Ni[m13Idx*Nbin+m12Idx][m13IdxTruth*Nbin + m12IdxTruth]++;
-            if(it%1000==0) cout<<__LINE__<<" Ni["<<m13Idx*Nbin+m12Idx<<"]["<<m13IdxTruth*Nbin + m12IdxTruth<<"]="<<Ni[m13Idx*Nbin+m12Idx][m13IdxTruth*Nbin + m12IdxTruth] <<" events processed"<<endl;
+            //if(it%1000==0) cout<<__LINE__<<" Ni["<<m13Idx*Nbin+m12Idx<<"]["<<m13IdxTruth*Nbin + m12IdxTruth<<"]="<<Ni[m13Idx*Nbin+m12Idx][m13IdxTruth*Nbin + m12IdxTruth] <<" events processed"<<endl;
         }
         double *eff = new double[Nbin * Nbin];
-        ofstream ofs0("result/eff0array.dat");
+        ofstream ofs0("../sample_matrix_result/eff0array.dat");
         ofs0<<" eff0Array: ";
         for(int rowIdx = 0; rowIdx < Nbin*Nbin; rowIdx++){
             ofs0<<" rowId: "<<rowIdx;
@@ -125,7 +125,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
         */
     }
     else{
-        ifstream ifs("result/eff0array.dat");
+        ifstream ifs("../sample_matrix_result/eff0array.dat");
         for(int ni=0; ni < Nbin*Nbin*Nbin*Nbin; ni++){
             ifs >>  eff0Array[ni];
         }
@@ -133,7 +133,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
     /**
      * 3. invert the eff matrix
      * */
-    cout<<" calculate inversion of eff matrix "<<endl;
+    cout<<" calculate inverse of eff matrix "<<endl;
     TMatrixD * mEff= new TMatrixD(Nbin*Nbin, Nbin*Nbin, eff0Array);
     TDecompLU *lu=new TDecompLU(*mEff);
     inverseMEff=new TMatrixD(lu->Invert());
@@ -182,7 +182,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
         cout<<endl;
         */
     }
-    ofstream ofs("result/effArray.dat");
+    ofstream ofs("../sample_matrix_result/effArray.dat");
     for( int nB=0; nB < Nbin*Nbin; nB++){
         cout<<" effArray["<<nB<<"]="<<effArray[nB]<<" aDSel["<<nB<<"]="<<aDSel[nB]<<" aDGen["<<nB<<"]="<<aDGen[nB]<<endl;
         ofs << effArray[nB]<<endl;
@@ -217,7 +217,7 @@ void correctData(int recal=0){
     double *yM12 =new double[Nbin*Nbin];
     TMatrixD *inverseMEff;
     double *effArray=calEff(eff0Array, Ni, NGen, xM13, yM12, inverseMEff);
-    /*ofstream ofs("result/array.dat");
+    /*ofstream ofs("../sample_matrix_../sample_matrix_result/array.dat");
       ofs<<"\t xM13\t\t yM12\t\t Ni\t\t NGen\t\t eff0Array\t"<<endl;
       for(int i =0; i< Nbin*Nbin; i++){
       ofs<<"\t "<<xM13[i]<<"\t "<<yM12[i]<<"\t\t "<<NGen[i]<<"\t"<<effArray[i]<<endl;

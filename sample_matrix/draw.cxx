@@ -1,6 +1,6 @@
 void draw(){
     gStyle->SetOptStat(0);
-    TFile *f=new TFile("result/corrected.root");
+    TFile *f=new TFile("../sample_matrix_result/corrected.root");
     TLine *line=new TLine(0.95, 0, 1.15,0);
     line->SetLineStyle(2);
     
@@ -28,8 +28,8 @@ void draw(){
     hY2->Draw("E");
     line->Draw();
     hY2->GetXaxis()->SetTitleSize(0.045);
-    cc->Print("result/IndependentModel.pdf");
-    cc->Print("result/Y0.png");
+    cc->Print("../sample_matrix_result/IndependentModel.pdf");
+    cc->Print("../sample_matrix_result/Y0.png");
 
     TCanvas *ch=new TCanvas("ch","ch",899*2,799);
     ch->Divide(2,1);
@@ -56,7 +56,7 @@ void draw(){
        nP += hPWave->GetBinContent(i); 
     }
     cout<<" nS/nP = "<<nS<<"/"<<nP<<" = "<< nS*1.0/nP<<endl;
-    ch->Print("result/SP.png");
+    ch->Print("../sample_matrix_result/SP.png");
 
     return;
     TCanvas *cEff=new TCanvas("cEff","efficiency", 900, 800);
@@ -97,5 +97,5 @@ void draw(){
     m12eff_0->GetXaxis()->SetTitleSize(0.045);
     m12eff_0->GetYaxis()->SetTitleSize(0.045);
     m12eff_0->SetTitle("m(K^{+}K^{-}) after correction");
-    cEff->Print("result/eff.png");
+    cEff->Print("../sample_matrix_result/eff.png");
 }

@@ -15,7 +15,7 @@ void correctData(int recal=0){
     /**
      * 1. Get data hist after corrected
      * */
-    fR=new TFile("result/corrected.root","recreate");
+    fR=new TFile("../sample_matrix_result/corrected.root","recreate");
     binWidth = (mEnd -mBeg)/Nbin;
     binM13 = (m13End -m13Beg)/Nbin;
     binCos = (cosEnd -cosBeg)/Nbin;
@@ -65,7 +65,7 @@ void correctData(int recal=0){
     double *NGen =new double[Nbin*Nbin];
     double *xM13 =new double[Nbin*Nbin];
     double *yM12 =new double[Nbin*Nbin];
-    ifstream iEff("result/effArray.dat");
+    ifstream iEff("../sample_matrix_result/effArray.dat");
     //string astr;
     //iEff >> astr >> astr >> astr >> astr >> astr;
     for(int iN=0; iN < Nbin*Nbin; iN++){
@@ -199,7 +199,7 @@ void correctData(int recal=0){
         cosHel->Fill(costheta, eff); 
         cosHel0->Fill(costheta); 
         dY[binIdx] += sqrt(4*pi)*y0[binIdx] - sqrt(5*pi)*y2[binIdx];
-        cout<<" y2["<<binIdx<<" ]= "<<y2[binIdx]<<" L2->Eval(costheta)= "<<L2->Eval(costheta)<<" UseEff["<<binIdx<<"] = "<<eff<<endl;
+        //cout<<" y2["<<binIdx<<" ]= "<<y2[binIdx]<<" L2->Eval(costheta)= "<<L2->Eval(costheta)<<" UseEff["<<binIdx<<"] = "<<eff<<endl;
     }
 
 
