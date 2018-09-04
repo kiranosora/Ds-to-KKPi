@@ -1,7 +1,0 @@
-echo "# Ds--KKPi" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin git@github.com:kiranosora/Ds--KKPi.git
-git push -u origin master
-
