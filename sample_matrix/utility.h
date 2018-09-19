@@ -90,6 +90,7 @@ TFile *fR;
 
 //const char* fDName="f0980_test/GeneratorLevel_SingleTag/rootFile/singleTag.root";
 //const char* fDName="../../generic_703/alg/ChooseBestSigTagPair_SingleTag/test.root";
+//const char* fDName="../root/data/test.root";
 const char* fDName="../root/generic_703/test.root";
 //const char* fDName="../../CalEff_Data/../../generic_703/alg/ChooseBestSigTagPair_SingleTag/test.root";
 //const char* fDName="/besfs/groups/psipp/psippgroup/public/wangmeng/DsTag/KKPi/DongLY/DongLY/data_703/CalEff_Data/f0980_test/ChooseBestSignalTagPair_SingleTag/test.root";

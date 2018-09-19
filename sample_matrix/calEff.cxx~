@@ -146,6 +146,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
     cout<<" read date after selection "<<endl;
     TChain *tD0 =new TChain("DsDecay","DsDecay");
     tD0->AddFile(fDName);
+    //sprintf(cut,"m12 > %f && m12 <%f",mBeg, mEnd);
     sprintf(cut,"isSig==1&&tagMatch==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     TTree* tD=tD0->CopyTree(cut);
     tD->SetBranchAddress("hel1213",     &costheta);
@@ -184,7 +185,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
     }
     ofstream ofs("../sample_matrix_result/effArray.dat");
     for( int nB=0; nB < Nbin*Nbin; nB++){
-        cout<<" effArray["<<nB<<"]="<<effArray[nB]<<" aDSel["<<nB<<"]="<<aDSel[nB]<<" aDGen["<<nB<<"]="<<aDGen[nB]<<endl;
+        //cout<<" effArray["<<nB<<"]="<<effArray[nB]<<" aDSel["<<nB<<"]="<<aDSel[nB]<<" aDGen["<<nB<<"]="<<aDGen[nB]<<endl;
         ofs << effArray[nB]<<endl;
     }
     //MEff->Invert(effArray);

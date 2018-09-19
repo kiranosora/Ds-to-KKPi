@@ -35,8 +35,8 @@ void correctData(int recal=0){
         _exit(0);
     }
 
-    //sprintf(cut,"m12 > %f && m12 <%f",mBeg, mEnd);
-    sprintf(cut,"isSig==1&&m12 > %f && m12 <%f",mBeg, mEnd);
+    sprintf(cut,"m12 > %f && m12 <%f",mBeg, mEnd);
+    //sprintf(cut,"isSig==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     //sprintf(cut,"match==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     //sprintf(cut,"isSig==1&&tagMatch==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     cout<<"cut: "<<cut<<endl;
@@ -199,7 +199,7 @@ void correctData(int recal=0){
         cosHel->Fill(costheta, eff); 
         cosHel0->Fill(costheta); 
         dY[binIdx] += sqrt(4*pi)*y0[binIdx] - sqrt(5*pi)*y2[binIdx];
-        cout<<" y2["<<binIdx<<" ]= "<<y2[binIdx]<<" L2->Eval(costheta)= "<<L2->Eval(costheta)<<" UseEff["<<binIdx<<"] = "<<eff<<endl;
+        //cout<<" y2["<<binIdx<<" ]= "<<y2[binIdx]<<" L2->Eval(costheta)= "<<L2->Eval(costheta)<<" UseEff["<<binIdx<<"] = "<<eff<<endl;
     }
 
 

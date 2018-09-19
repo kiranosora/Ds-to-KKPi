@@ -36,9 +36,9 @@ void correctData(int recal=0){
     }
 
     //sprintf(cut,"m12 > %f && m12 <%f",mBeg, mEnd);
-    sprintf(cut,"isSig==1&&m12 > %f && m12 <%f",mBeg, mEnd);
+    //sprintf(cut,"isSig==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     //sprintf(cut,"match==1&&m12 > %f && m12 <%f",mBeg, mEnd);
-    //sprintf(cut,"isSig==1&&tagMatch==1&&m12 > %f && m12 <%f",mBeg, mEnd);
+    sprintf(cut,"isSig==1&&tagMatch==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     cout<<"cut: "<<cut<<endl;
     fR->cd();
     TTree* tD=tD0->CopyTree(cut);

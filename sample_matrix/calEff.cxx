@@ -94,9 +94,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
         }
         double *eff = new double[Nbin * Nbin];
         ofstream ofs0("../sample_matrix_result/eff0array.dat");
-        ofs0<<" eff0Array: ";
         for(int rowIdx = 0; rowIdx < Nbin*Nbin; rowIdx++){
-            ofs0<<" rowId: "<<rowIdx;
             for(int rowIdxM=0; rowIdxM < Nbin*Nbin; rowIdxM++){
                 //cout<<__LINE__<<" Ni["<<rowIdx<<"]["<<rowIdxM<<"]= "<<Ni[rowIdx][rowIdxM]<<" NGen["<<rowIdxM<<"]="<<NGen[rowIdxM]<<endl;
                 eff0Array[rowIdx*Nbin*Nbin+rowIdxM]= Ni[rowIdx][rowIdxM]*1.0/NGen[rowIdxM];
@@ -146,6 +144,7 @@ double * calEff(double* eff0Array, double **Ni, double *NGen, double *xM13, doub
     cout<<" read date after selection "<<endl;
     TChain *tD0 =new TChain("DsDecay","DsDecay");
     tD0->AddFile(fDName);
+    //sprintf(cut,"m12 > %f && m12 <%f",mBeg, mEnd);
     sprintf(cut,"isSig==1&&tagMatch==1&&m12 > %f && m12 <%f",mBeg, mEnd);
     TTree* tD=tD0->CopyTree(cut);
     tD->SetBranchAddress("hel1213",     &costheta);
